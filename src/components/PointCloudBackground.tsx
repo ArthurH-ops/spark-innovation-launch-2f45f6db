@@ -20,27 +20,23 @@ const PointCloudBackground: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Point parameters
-    const points: { x: number; y: number; z: number; vx: number; vy: number; vz: number }[] = [];
-    const pointCount = Math.min(window.innerWidth / 3, 300); // Responsive point count
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    // Helix parameters
+    const points: { angle: number; height: number; radius: number }[] = [];
+    const numberOfPoints = 300;
+    const helixRadius = Math.min(canvas.width, canvas.height) * 0.3;
+    const helixHeight = canvas.height * 1.5;
+    const rotationSpeed = 0.001;
     
-    // Initialize points in organic shape
-    for (let i = 0; i < pointCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const radius = Math.random() * 200 + 50;
-      const height = Math.random() * 200 - 100;
-      
+    // Initialize points in a helix formation
+    for (let i = 0; i < numberOfPoints; i++) {
       points.push({
-        x: centerX + Math.cos(angle) * radius,
-        y: centerY + Math.sin(angle) * radius,
-        z: height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        vz: (Math.random() - 0.5) * 0.5
+        angle: (i / numberOfPoints) * Math.PI * 8,
+        height: (i / numberOfPoints) * helixHeight - helixHeight / 2,
+        radius: helixRadius
       });
     }
+    
+    let rotationAngle = 0;
     
     // Animation function
     function animate() {
@@ -53,46 +49,50 @@ const PointCloudBackground: React.FC = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Update and draw points
-      for (const point of points) {
-        // Update position
-        point.x += point.vx;
-        point.y += point.vy;
-        point.z += point.vz;
+      // Update rotation angle
+      rotationAngle += rotationSpeed;
+      
+      // Calculate center position
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      
+      // Draw points
+      points.forEach((point) => {
+        // Calculate 3D position
+        const x = centerX + Math.cos(point.angle + rotationAngle) * point.radius;
+        const y = centerY + point.height;
+        const z = Math.sin(point.angle + rotationAngle) * point.radius;
         
-        // Boundary check and bounce
-        if (Math.abs(point.x - centerX) > 250) point.vx *= -1;
-        if (Math.abs(point.y - centerY) > 250) point.vy *= -1;
-        if (Math.abs(point.z) > 100) point.vz *= -1;
-        
-        // Calculate size and opacity based on z position
-        const scale = (500 + point.z) / 500;
-        const size = 1.5 * scale;
+        // Scale based on z position for perspective
+        const scale = (1000 + z) / 1000;
+        const size = 2 * scale;
         const opacity = Math.min(scale, 0.8);
         
         // Draw point
         ctx.beginPath();
-        ctx.arc(point.x, point.y, size, 0, Math.PI * 2);
+        ctx.arc(x, y % canvas.height, size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
         
-        // Connect nearby points
-        for (const otherPoint of points) {
-          const dx = point.x - otherPoint.x;
-          const dy = point.y - otherPoint.y;
-          const dz = point.z - otherPoint.z;
-          const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        // Connect points
+        points.forEach((otherPoint) => {
+          const otherX = centerX + Math.cos(otherPoint.angle + rotationAngle) * otherPoint.radius;
+          const otherY = centerY + otherPoint.height;
+          const distance = Math.sqrt(
+            Math.pow(x - otherX, 2) + 
+            Math.pow((y % canvas.height) - (otherY % canvas.height), 2)
+          );
           
           if (distance < 50) {
             ctx.beginPath();
-            ctx.moveTo(point.x, point.y);
-            ctx.lineTo(otherPoint.x, otherPoint.y);
+            ctx.moveTo(x, y % canvas.height);
+            ctx.lineTo(otherX, otherY % canvas.height);
             ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 50) * 0.2})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        }
-      }
+        });
+      });
       
       requestAnimationFrame(animate);
     }
@@ -114,4 +114,3 @@ const PointCloudBackground: React.FC = () => {
 };
 
 export default PointCloudBackground;
-

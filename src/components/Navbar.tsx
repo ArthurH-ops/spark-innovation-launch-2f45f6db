@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,8 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const textColorClass = isHomePage ? 'text-s28-white' : 'text-s28-black';
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
@@ -28,19 +31,19 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-s28-white text-2xl font-semibold">
+        <Link to="/" className={textColorClass + " text-2xl font-semibold"}>
           S28 Forge
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/philosophy" className="text-s28-white hover:text-s28 transition-colors underline-hover">
+          <Link to="/philosophy" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
             Philosophy
           </Link>
-          <Link to="/about" className="text-s28-white hover:text-s28 transition-colors underline-hover">
+          <Link to="/about" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
             About Us
           </Link>
-          <Link to="/contact" className="text-s28-white hover:text-s28 transition-colors underline-hover">
+          <Link to="/contact" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
             Contact
           </Link>
           <a 
@@ -55,7 +58,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-s28-white hover:text-s28 transition-colors"
+          className={`md:hidden ${textColorClass} hover:text-s28 transition-colors`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

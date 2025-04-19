@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
       
       <div className="container mx-auto px-6 z-10 text-center">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-s28-white mb-6">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <TypewriterText text="unleashing your research's potential" delay={500} />
           </div>
         </h1>

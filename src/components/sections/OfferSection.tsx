@@ -18,7 +18,7 @@ const OfferSection: React.FC = () => {
           </h2>
           <div className="w-20 h-1 bg-s28 mx-auto"></div>
           <p className="mt-6 text-lg text-s28-gray-700 max-w-3xl mx-auto">
-            We transform academic research into market-ready innovations through comprehensive support and partnership.
+            We transform academic research into market-ready innovations through equity partnerships and co-founding ventures.
           </p>
         </div>
         
@@ -37,7 +37,7 @@ const OfferSection: React.FC = () => {
             </div>
             <h3 className="text-xl font-bold mb-4">Venture Building</h3>
             <p className="text-s28-gray-700">
-              From lab to market, we handle every step of the commercialization process. Our team builds the business foundations while you focus on your research and technology.
+              We co-found and build spinoffs together with researchers. Through our equity-for-consulting model, we take on the business side while you focus on your research and technology.
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-start">

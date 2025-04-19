@@ -54,9 +54,9 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				s28: {
-					DEFAULT: '#F97316',
-					dark: '#EA580C',
-					light: '#FB923C',
+					DEFAULT: '#E84E10', // More saturated and darker orange
+					dark: '#D04000', // Darker variation
+					light: '#F86530', // Lighter variation
 					black: '#000000',
 					white: '#FFFFFF',
 					gray: {
@@ -109,8 +109,12 @@ export default {
 					'50%': { transform: 'translateY(-10px)' }
 				},
 				'pulse-glow': {
-					'0%, 100%': { boxShadow: '0 0 0 0 rgba(249, 115, 22, 0)' },
-					'50%': { boxShadow: '0 0 20px 5px rgba(249, 115, 22, 0.4)' }
+					'0%, 100%': { boxShadow: '0 0 0 0 rgba(232, 78, 16, 0)' },
+					'50%': { boxShadow: '0 0 20px 5px rgba(232, 78, 16, 0.4)' }
+				},
+				'rotate-3d': {
+					'0%': { transform: 'rotateY(0) rotateX(0)' },
+					'100%': { transform: 'rotateY(360deg) rotateX(360deg)' }
 				}
 			},
 			animation: {
@@ -122,7 +126,8 @@ export default {
 				'fade-in-left': 'fade-in-left 0.6s ease-out',
 				'fade-in-right': 'fade-in-right 0.6s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse-glow': 'pulse-glow 2s infinite'
+				'pulse-glow': 'pulse-glow 2s infinite',
+				'rotate-3d': 'rotate-3d 30s linear infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif']

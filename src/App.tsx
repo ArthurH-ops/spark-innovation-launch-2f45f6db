@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Imprint from "./pages/Imprint";
 import NotFound from "./pages/NotFound";
+import Philosophy from "./pages/Philosophy";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/philosophy" element={<Philosophy />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/imprint" element={<Imprint />} />

@@ -9,13 +9,16 @@ const HeroSection: React.FC = () => {
       <PointCloudBackground />
       
       <div className="container mx-auto px-6 z-10 text-center">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-s28-white mb-6">
-          <TypewriterText text="unleashing your research's potential" delay={500} />
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-s28-white mb-6">
+          <div className="max-w-2xl mx-auto">
+            <TypewriterText text="unleashing your" delay={500} />
+            <TypewriterText text="research's potential" delay={2500} />
+          </div>
         </h1>
         
-        <div className="mt-12 opacity-0 animate-fade-in" style={{ animationDelay: '4s', animationFillMode: 'forwards' }}>
+        <div className="mt-12 opacity-0 animate-fade-in" style={{ animationDelay: '6s', animationFillMode: 'forwards' }}>
           <a 
-            href="/#philosophy" 
+            href="/philosophy" 
             className="btn-primary inline-flex items-center space-x-2"
           >
             <span>Discover How</span>

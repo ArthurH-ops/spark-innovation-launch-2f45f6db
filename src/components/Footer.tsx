@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-6">
-            <Link to="/#philosophy" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
+            <Link to="/philosophy" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
               Philosophy
             </Link>
             <Link to="/about" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">

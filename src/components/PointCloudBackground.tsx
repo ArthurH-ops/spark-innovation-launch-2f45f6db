@@ -21,22 +21,38 @@ const PointCloudBackground: React.FC = () => {
     window.addEventListener('resize', resizeCanvas);
     
     // Point parameters
-    const points: { x: number; y: number; z: number; vx: number; vy: number; vz: number; radius: number }[] = [];
-    const pointCount = Math.min(window.innerWidth / 3, 200); // Responsive point count
-    const maxDepth = 5;
+    const points: { x: number; y: number; z: number; initialAngle: number; radius: number; height: number; speed: number }[] = [];
+    const pointCount = Math.min(window.innerWidth / 3, 300); // Responsive point count
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
     
-    // Initialize points
+    // Create torus/donut shape
+    const torusRadius = Math.min(canvas.width, canvas.height) * 0.3;
+    const tubeRadius = torusRadius * 0.2;
+    
+    // Initialize points in a torus/donut shape
     for (let i = 0; i < pointCount; i++) {
+      const theta = Math.random() * Math.PI * 2; // Around the main circle
+      const phi = Math.random() * Math.PI * 2; // Around the tube
+      
+      // Calculate position on the torus
+      const x = (torusRadius + tubeRadius * Math.cos(phi)) * Math.cos(theta);
+      const y = (torusRadius + tubeRadius * Math.cos(phi)) * Math.sin(theta);
+      const z = tubeRadius * Math.sin(phi);
+      
       points.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        z: Math.random() * maxDepth,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        vz: (Math.random() - 0.5) * 0.1,
-        radius: Math.random() * 2 + 1
+        x: centerX + x,
+        y: centerY + y,
+        z: z,
+        initialAngle: theta,
+        radius: Math.random() * 1.5 + 0.5, // Smaller points
+        height: Math.random() * 0.5 + 0.5,
+        speed: (Math.random() * 0.0005 + 0.0005) * (Math.random() > 0.5 ? 1 : -1) // Random speed direction
       });
     }
+    
+    // Animation time tracking
+    let time = 0;
     
     // Animation function
     const animate = () => {
@@ -49,34 +65,32 @@ const PointCloudBackground: React.FC = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
+      time += 0.01;
+      
       // Update and draw points
       for (const point of points) {
-        // Update position
-        point.x += point.vx;
-        point.y += point.vy;
-        point.z += point.vz;
+        // Rotate point around the center - creating the spinning effect
+        const angle = point.initialAngle + time * point.speed;
         
-        // Wrap around edges
-        if (point.x < 0) point.x = canvas.width;
-        if (point.x > canvas.width) point.x = 0;
-        if (point.y < 0) point.y = canvas.height;
-        if (point.y > canvas.height) point.y = 0;
+        // Update position based on torus equations with time-based rotation
+        const x = (torusRadius + tubeRadius * Math.cos(angle * 5)) * Math.cos(angle);
+        const y = (torusRadius + tubeRadius * Math.cos(angle * 5)) * Math.sin(angle);
+        const z = tubeRadius * Math.sin(angle * 5) * point.height;
         
-        // Z-wrap
-        if (point.z < 0) point.z = maxDepth;
-        if (point.z > maxDepth) point.z = 0;
+        // Convert to screen space
+        point.x = centerX + x;
+        point.y = centerY + y;
+        point.z = z;
         
-        // Calculate size based on depth (perspective)
-        const scale = (maxDepth - point.z) / maxDepth;
-        const size = point.radius * scale * 2;
-        
-        // Calculate color based on depth
-        const colorIntensity = Math.floor(200 * scale);
+        // Calculate size and opacity based on z position for perspective
+        const scale = (500 - point.z) / 500;
+        const size = point.radius * scale;
+        const opacity = Math.min(scale, 0.8);
         
         // Draw point
         ctx.beginPath();
         ctx.arc(point.x, point.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${colorIntensity}, ${colorIntensity}, ${colorIntensity}, ${scale})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
         
         // Connect nearby points
@@ -87,13 +101,12 @@ const PointCloudBackground: React.FC = () => {
           const dy = point.y - otherPoint.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          // Connect points within 100px
-          if (distance < 100) {
-            const opacity = (1 - distance / 100) * 0.2 * scale;
+          // Connect points within certain distance
+          if (distance < 50) {
             ctx.beginPath();
             ctx.moveTo(point.x, point.y);
             ctx.lineTo(otherPoint.x, otherPoint.y);
-            ctx.strokeStyle = `rgba(${colorIntensity}, ${colorIntensity}, ${colorIntensity}, ${opacity})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 50) * 0.2 * opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

@@ -29,12 +29,12 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-s28-white text-2xl font-semibold">
-          S28 Forge<span className="text-s28">.</span>
+          S28 Forge
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/#philosophy" className="text-s28-white hover:text-s28 transition-colors underline-hover">
+          <Link to="/philosophy" className="text-s28-white hover:text-s28 transition-colors underline-hover">
             Philosophy
           </Link>
           <Link to="/about" className="text-s28-white hover:text-s28 transition-colors underline-hover">
@@ -67,7 +67,7 @@ const Navbar = () => {
         <nav className="md:hidden absolute top-full left-0 w-full bg-s28-black/95 backdrop-blur-md py-6 animate-fade-in">
           <div className="container mx-auto px-6 flex flex-col space-y-4">
             <Link 
-              to="/#philosophy" 
+              to="/philosophy" 
               className="text-s28-white hover:text-s28 transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >

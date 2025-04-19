@@ -1,9 +1,9 @@
 
 import React from 'react';
 import HeroSection from '@/components/sections/HeroSection';
-import PhilosophySection from '@/components/sections/PhilosophySection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import OfferSection from '@/components/sections/OfferSection';
 
 const Index: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Index: React.FC = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <PhilosophySection />
+        <OfferSection />
       </main>
       <Footer />
     </>

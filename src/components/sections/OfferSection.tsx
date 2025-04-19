@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Section from '../Section';
 import { motion } from 'framer-motion';
@@ -102,16 +101,6 @@ const OfferSection: React.FC = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <a 
-            href="/philosophy" 
-            className="btn-secondary inline-flex items-center space-x-2 mr-4"
-          >
-            <span>Learn Our Philosophy</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
-          
           <a 
             href="/contact" 
             className="btn-primary inline-flex items-center space-x-2"

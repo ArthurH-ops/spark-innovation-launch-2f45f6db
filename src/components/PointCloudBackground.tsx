@@ -19,7 +19,7 @@ const PointCloudBackground: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Single Helix parameters
+    // Single Helix parameters - IMPORTANT: ONE SINGLE HELIX
     const points: { angle: number; height: number }[] = [];
     const numberOfPoints = 200;
     const helixRadius = Math.min(canvas.width, canvas.height) * 0.3;
@@ -39,10 +39,10 @@ const PointCloudBackground: React.FC = () => {
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dark blue gradient background
+      // Dark blue gradient background - MUCH DARKER as requested
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#151d2c');
-      gradient.addColorStop(1, '#203354');
+      gradient.addColorStop(0, '#0c1220'); // Darker blue
+      gradient.addColorStop(1, '#162238'); // Darker blue
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
@@ -51,7 +51,7 @@ const PointCloudBackground: React.FC = () => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
       
-      // Draw the single helix
+      // Draw the single helix - ONE SINGLE SET OF POINTS
       for (let i = 0; i < points.length; i++) {
         const point = points[i];
         const x = centerX + Math.cos(point.angle + rotationAngle) * helixRadius;

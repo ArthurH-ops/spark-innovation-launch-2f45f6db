@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-6 z-10 text-center">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
           <div className="flex justify-center mx-auto">
-            <div className="typewriter-container h-16 lg:h-20 flex items-center justify-center">
+            <div className="typewriter-container h-20 lg:h-24 flex items-center justify-center">
               <TypewriterText 
                 text="unleashing your research's potential" 
                 delay={500} 

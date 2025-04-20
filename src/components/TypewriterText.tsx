@@ -24,7 +24,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   }, [delay]);
 
   return (
-    <div className={`typewriter ${className} mb-2`} ref={textRef}>
+    <div className={`typewriter inline-block text-center min-w-full ${className}`} ref={textRef}>
       {text}
     </div>
   );

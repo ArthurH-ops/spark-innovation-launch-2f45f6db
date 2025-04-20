@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 const PointCloudBackground: React.FC = () => {
@@ -45,8 +44,8 @@ const PointCloudBackground: React.FC = () => {
       
       // Dark blue gradient background
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#0c1220'); // Darker blue
-      gradient.addColorStop(1, '#162238'); // Darker blue
+      gradient.addColorStop(0, '#06080f'); // Much darker blue
+      gradient.addColorStop(1, '#0d1525'); // Darker blue
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       

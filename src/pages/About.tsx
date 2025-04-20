@@ -24,25 +24,33 @@ const About: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Team Member 1 */}
                 <div className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg">
-                  <div className="w-48 h-48 bg-s28-gray-200 rounded-full mb-6 overflow-hidden flex items-center justify-center">
-                    <span className="text-s28-gray-400 text-sm">Team Member Photo</span>
+                  <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
+                      alt="Arthur Handler"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold mb-1">Jane Doe</h3>
+                  <h3 className="text-xl font-semibold mb-1">Arthur Handler</h3>
                   <p className="text-s28 mb-4">Founder & CEO</p>
                   <p className="text-center text-s28-gray-600">
-                    With 15+ years of experience bridging science and business, Jane leads our mission to transform research into impact.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </p>
                 </div>
                 
                 {/* Team Member 2 */}
                 <div className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg">
-                  <div className="w-48 h-48 bg-s28-gray-200 rounded-full mb-6 overflow-hidden flex items-center justify-center">
-                    <span className="text-s28-gray-400 text-sm">Team Member Photo</span>
+                  <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
+                    <img 
+                      src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
+                      alt="Kariem El Saedi"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold mb-1">John Smith</h3>
-                  <p className="text-s28 mb-4">Chief Innovation Officer</p>
+                  <h3 className="text-xl font-semibold mb-1">Kariem El Saedi</h3>
+                  <p className="text-s28 mb-4">Co-founder & COO</p>
                   <p className="text-center text-s28-gray-600">
-                    John brings deep technical expertise and a keen eye for market opportunities to our venture building process.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
                   </p>
                 </div>
               </div>
@@ -56,9 +64,11 @@ const About: React.FC = () => {
                 {/* Partner 1 */}
                 <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
                   <div className="h-16 mb-6 flex items-center justify-center">
-                    <div className="w-32 h-12 bg-s28-gray-200 flex items-center justify-center">
-                      <span className="text-s28-gray-400 text-sm">Partner Logo</span>
-                    </div>
+                    <img 
+                      src="/lovable-uploads/964a2cdb-34c4-4669-bfec-1fa837fa159f.png"
+                      alt="Aspekt Logo"
+                      className="h-8 object-contain"
+                    />
                   </div>
                   <p className="text-center text-s28-gray-700">
                     Supporting prototyping and technical validation of innovative research concepts.
@@ -68,27 +78,17 @@ const About: React.FC = () => {
                 {/* Partner 2 */}
                 <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
                   <div className="h-16 mb-6 flex items-center justify-center">
-                    <div className="w-32 h-12 bg-s28-gray-200 flex items-center justify-center">
-                      <span className="text-s28-gray-400 text-sm">Partner Logo</span>
-                    </div>
+                    <img 
+                      src="/lovable-uploads/1b56a043-67eb-4ec1-90a5-188c15a51240.png"
+                      alt="Mazal Logo"
+                      className="h-8 object-contain"
+                    />
                   </div>
                   <p className="text-center text-s28-gray-700">
                     Providing legal, financial, and market launch expertise for research commercialization.
                   </p>
                 </div>
               </div>
-            </div>
-            
-            <div className="mt-16 text-center">
-              <a 
-                href="/contact" 
-                className="btn-primary animate-pulse-glow inline-flex items-center space-x-2"
-              >
-                <span>Get in Touch</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </a>
             </div>
           </div>
         </Section>

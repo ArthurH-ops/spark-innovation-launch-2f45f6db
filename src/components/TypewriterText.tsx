@@ -16,21 +16,26 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   
   useEffect(() => {
     const element = textRef.current;
-    if (element) {
-      element.textContent = '';
+    if (!element) return;
+    
+    element.textContent = '';
+    
+    const typeText = () => {
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 100); // Adjust speed of typing here
       
-      setTimeout(() => {
-        let i = 0;
-        const typeInterval = setInterval(() => {
-          if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-          } else {
-            clearInterval(typeInterval);
-          }
-        }, 100);
-      }, delay);
-    }
+      return () => clearInterval(typeInterval);
+    };
+    
+    const timeout = setTimeout(typeText, delay);
+    return () => clearTimeout(timeout);
   }, [text, delay]);
 
   return (
@@ -38,9 +43,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
       className={`typewriter inline-block text-center min-w-full ${className}`} 
       ref={textRef}
       style={{ minHeight: '1.2em' }}
-    >
-      {/* Text will be inserted dynamically via JS */}
-    </div>
+    />
   );
 };
 

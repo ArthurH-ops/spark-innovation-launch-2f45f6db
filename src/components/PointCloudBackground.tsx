@@ -19,17 +19,17 @@ const PointCloudBackground: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Helix parameters
+    // Single Helix parameters
     const points: { angle: number; height: number }[] = [];
-    const numberOfPoints = 200;
+    const numberOfPoints = 100;
     const helixRadius = Math.min(canvas.width, canvas.height) * 0.3;
     const helixHeight = canvas.height * 1.5;
-    const rotationSpeed = 0.001;
+    const rotationSpeed = 0.002;
     
     // Initialize points in a single helix formation
     for (let i = 0; i < numberOfPoints; i++) {
       points.push({
-        angle: (i / numberOfPoints) * Math.PI * 8,
+        angle: (i / numberOfPoints) * Math.PI * 4,
         height: (i / numberOfPoints) * helixHeight - helixHeight / 2
       });
     }
@@ -40,8 +40,8 @@ const PointCloudBackground: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#000000');
-      gradient.addColorStop(1, '#222222');
+      gradient.addColorStop(0, 'rgba(223,234,247,1)');
+      gradient.addColorStop(1, 'rgba(244,248,252,1)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
@@ -61,22 +61,8 @@ const PointCloudBackground: React.FC = () => {
         
         ctx.beginPath();
         ctx.arc(x, y % canvas.height, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillStyle = `rgba(105, 145, 194, ${opacity})`;
         ctx.fill();
-        
-        // Connect points to create a continuous line
-        if (i < points.length - 1) {
-          const nextPoint = points[i + 1];
-          const nextX = centerX + Math.cos(nextPoint.angle + rotationAngle) * helixRadius;
-          const nextY = centerY + nextPoint.height;
-          
-          ctx.beginPath();
-          ctx.moveTo(x, y % canvas.height);
-          ctx.lineTo(nextX, nextY % canvas.height);
-          ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.3})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
       });
       
       requestAnimationFrame(animate);
@@ -93,7 +79,6 @@ const PointCloudBackground: React.FC = () => {
     <canvas 
       ref={canvasRef} 
       className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
-      style={{ background: 'linear-gradient(to bottom, #000000, #222222)' }}
     />
   );
 };

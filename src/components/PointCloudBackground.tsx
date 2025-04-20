@@ -19,19 +19,23 @@ const PointCloudBackground: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Single Helix parameters - IMPORTANT: ONE SINGLE HELIX
-    const points: { angle: number; height: number }[] = [];
-    const numberOfPoints = 200;
+    // Multiple helix parameters
+    const numberOfHelixes = 6; // Number of helixes to create
+    const points: Array<{ angle: number; height: number; helixIndex: number }> = [];
+    const numberOfPointsPerHelix = 50;
     const helixRadius = Math.min(canvas.width, canvas.height) * 0.3;
     const helixHeight = canvas.height * 1.5;
     const rotationSpeed = 0.001;
     
-    // Initialize points in a single helix formation
-    for (let i = 0; i < numberOfPoints; i++) {
-      points.push({
-        angle: (i / numberOfPoints) * Math.PI * 4,
-        height: (i / numberOfPoints) * helixHeight - helixHeight / 2
-      });
+    // Initialize points for multiple helixes
+    for (let h = 0; h < numberOfHelixes; h++) {
+      for (let i = 0; i < numberOfPointsPerHelix; i++) {
+        points.push({
+          angle: (i / numberOfPointsPerHelix) * Math.PI * 4 + (h * (Math.PI * 2) / numberOfHelixes),
+          height: (i / numberOfPointsPerHelix) * helixHeight - helixHeight / 2,
+          helixIndex: h
+        });
+      }
     }
     
     let rotationAngle = 0;
@@ -39,7 +43,7 @@ const PointCloudBackground: React.FC = () => {
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dark blue gradient background - MUCH DARKER as requested
+      // Dark blue gradient background
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
       gradient.addColorStop(0, '#0c1220'); // Darker blue
       gradient.addColorStop(1, '#162238'); // Darker blue
@@ -51,9 +55,8 @@ const PointCloudBackground: React.FC = () => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
       
-      // Draw the single helix - ONE SINGLE SET OF POINTS
-      for (let i = 0; i < points.length; i++) {
-        const point = points[i];
+      // Draw all helixes
+      points.forEach(point => {
         const x = centerX + Math.cos(point.angle + rotationAngle) * helixRadius;
         const y = centerY + point.height;
         const z = Math.sin(point.angle + rotationAngle) * helixRadius;
@@ -66,7 +69,7 @@ const PointCloudBackground: React.FC = () => {
         ctx.arc(x, y % canvas.height, size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
-      }
+      });
       
       requestAnimationFrame(animate);
     }

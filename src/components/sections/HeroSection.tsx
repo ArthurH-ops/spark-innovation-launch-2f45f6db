@@ -4,6 +4,15 @@ import TypewriterText from '../TypewriterText';
 import PointCloudBackground from '../PointCloudBackground';
 
 const HeroSection: React.FC = () => {
+  // Array of rotating phrases
+  const rotatingTexts = [
+    "unleashing your research's potential",
+    "transforming discoveries into ventures",
+    "bridging science and business",
+    "accelerating innovation to market",
+    "commercializing academic excellence"
+  ];
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <PointCloudBackground />
@@ -13,9 +22,10 @@ const HeroSection: React.FC = () => {
           <div className="flex justify-center mx-auto">
             <div className="typewriter-container h-20 lg:h-24 flex items-center justify-center">
               <TypewriterText 
-                text="unleashing your research's potential" 
+                texts={rotatingTexts} 
                 delay={500} 
-                className="text-center" 
+                className="text-center"
+                pauseDuration={1500}
               />
             </div>
           </div>

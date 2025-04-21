@@ -1,42 +1,65 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface TypewriterTextProps {
-  text: string;
+  texts: string[];
   className?: string;
   delay?: number;
+  typingSpeed?: number;
+  pauseDuration?: number;
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({ 
-  text, 
+  texts, 
   className = "",
-  delay = 0
+  delay = 0,
+  typingSpeed = 100,
+  pauseDuration = 2000
 }) => {
   const textRef = useRef<HTMLDivElement>(null);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   
   useEffect(() => {
+    if (!texts.length) return;
+    
     const element = textRef.current;
     if (!element) return;
     
-    element.textContent = '';
+    let currentTimeout: NodeJS.Timeout;
     
     const typeText = () => {
+      const currentText = texts[currentTextIndex];
+      element.textContent = '';
       let i = 0;
+      
       const typeInterval = setInterval(() => {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
+        if (i < currentText.length) {
+          element.textContent += currentText.charAt(i);
           i++;
         } else {
           clearInterval(typeInterval);
+          
+          // Wait before moving to the next text
+          currentTimeout = setTimeout(() => {
+            // Move to the next text or back to first text
+            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+          }, pauseDuration);
         }
-      }, 100); // Adjust speed of typing here
+      }, typingSpeed);
       
-      return () => clearInterval(typeInterval);
+      return () => {
+        clearInterval(typeInterval);
+        clearTimeout(currentTimeout);
+      };
     };
     
-    const timeout = setTimeout(typeText, delay);
-    return () => clearTimeout(timeout);
-  }, [text, delay]);
+    const initialTimeout = setTimeout(typeText, delay);
+    
+    return () => {
+      clearTimeout(initialTimeout);
+      clearTimeout(currentTimeout);
+    };
+  }, [texts, delay, currentTextIndex, typingSpeed, pauseDuration]);
 
   return (
     <div 

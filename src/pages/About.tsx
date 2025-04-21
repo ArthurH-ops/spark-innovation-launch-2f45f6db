@@ -61,21 +61,7 @@ const About: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-10 text-center">Partnerships</h2>
               
               <div className="grid md:grid-cols-2 gap-8">
-                {/* Partner 1 */}
-                <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
-                  <div className="h-16 mb-6 flex items-center justify-center">
-                    <img 
-                      src="/lovable-uploads/964a2cdb-34c4-4669-bfec-1fa837fa159f.png"
-                      alt="Aspekt Logo"
-                      className="h-8 object-contain"
-                    />
-                  </div>
-                  <p className="text-center text-s28-gray-700">
-                    Supporting prototyping and technical validation of innovative research concepts.
-                  </p>
-                </div>
-                
-                {/* Partner 2 */}
+                {/* Partner 2 - Mazal (swapped position) */}
                 <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
                   <div className="h-16 mb-6 flex items-center justify-center">
                     <img 
@@ -86,6 +72,20 @@ const About: React.FC = () => {
                   </div>
                   <p className="text-center text-s28-gray-700">
                     Providing legal, financial, and market launch expertise for research commercialization.
+                  </p>
+                </div>
+                
+                {/* Partner 1 - Aspekt (swapped position) */}
+                <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
+                  <div className="h-16 mb-6 flex items-center justify-center">
+                    <img 
+                      src="/lovable-uploads/964a2cdb-34c4-4669-bfec-1fa837fa159f.png"
+                      alt="Aspekt Logo"
+                      className="h-8 object-contain"
+                    />
+                  </div>
+                  <p className="text-center text-s28-gray-700">
+                    Supporting prototyping and technical validation of innovative research concepts.
                   </p>
                 </div>
               </div>

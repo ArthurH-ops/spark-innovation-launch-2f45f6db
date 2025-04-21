@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const PhilosophyContent: React.FC = () => {
@@ -28,13 +29,13 @@ const PhilosophyContent: React.FC = () => {
       
       <div className="mt-16 p-8 bg-s28-gray-100 rounded-xl">
         <p className="text-s28-gray-800 mb-6 text-justify">
-          At S28 Forge, we see the world not as it is, but as it could be. Every lab discovery, every prototype, carries within it the promise of a better tomorrow—if only it finds the right champions.
+          In the quiet corridors of Europe's laboratories, revolutionary ideas take shape daily—ideas that could transform industries, heal diseases, or solve our climate crisis. Yet for every breakthrough that reaches the marketplace, dozens remain trapped behind institutional walls, their potential unrealized.
         </p>
         <p className="text-s28-gray-800 mb-6 text-justify">
-          That's where we come in. We partner with Europe's leading research institutes to give each breakthrough the runway it needs: securing funding, navigating legal labyrinths, assembling go-to-market teams. While we shoulder the business complexities, researchers stay in their element—pushing science forward.
+          S28 Forge exists in this crucial gap. We're not just consultants or investors; we're architects of possibility. We stand shoulder-to-shoulder with visionary researchers, providing not just capital but the commercial expertise, legal navigation, and market connections that turn scientific discoveries into thriving ventures.
         </p>
         <p className="text-s28-gray-800 text-justify">
-          The result? Startups born from pure curiosity and rigorous science, ready to tackle real challenges. From green-energy solutions and biotech marvels to AI-driven diagnostics, our ventures deliver both impact and economic growth. Together, we're not just launching companies—we're forging the future.
+          Our work goes beyond profit—we're catalyzing a new renaissance where European innovation leads global markets. By connecting brilliant minds with bold capital, we're building companies that don't just survive but reshape industries, create meaningful employment, and address humanity's most pressing challenges. This isn't just business building; it's future-crafting at its most profound.
         </p>
       </div>
       

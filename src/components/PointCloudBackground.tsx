@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 
 const PointCloudBackground: React.FC = () => {
@@ -42,10 +43,10 @@ const PointCloudBackground: React.FC = () => {
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dark blue gradient background
+      // Much darker blue gradient background
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#06080f'); // Much darker blue
-      gradient.addColorStop(1, '#0d1525'); // Darker blue
+      gradient.addColorStop(0, '#030409'); // Almost black blue
+      gradient.addColorStop(1, '#050911'); // Very dark blue
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       

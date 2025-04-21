@@ -6,7 +6,7 @@ import PointCloudBackground from '../PointCloudBackground';
 const HeroSection: React.FC = () => {
   // Array of rotating phrases including the leading phrase "S28 Forge" in the typewriter text
   const rotatingTexts = [
-    "S28 Forge: unleashing your research’s potential",
+    "S28 Forge: unleashing your research's potential",
     "S28 Forge: transforming discoveries into ventures",
     "S28 Forge: bridging science and business",
     "S28 Forge: accelerating innovation to market",
@@ -22,9 +22,10 @@ const HeroSection: React.FC = () => {
             <div className="h-20 lg:h-24 flex items-center justify-center">
               <TypewriterText
                 texts={rotatingTexts}
-                delay={500}
+                delay={0}
                 className="text-center"
-                pauseDuration={1500}
+                pauseDuration={2000}
+                typingSpeed={50}
               />
             </div>
           </div>

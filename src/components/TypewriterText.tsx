@@ -19,15 +19,26 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   
   useEffect(() => {
     if (!texts.length) return;
     
+    // Initial delay before starting the typing animation
+    const initialDelay = setTimeout(() => {
+      setIsTyping(true);
+    }, delay);
+    
+    return () => clearTimeout(initialDelay);
+  }, [texts, delay]);
+  
+  useEffect(() => {
+    if (!texts.length || !isTyping) return;
+    
+    const currentText = texts[currentIndex];
     let timeout: NodeJS.Timeout;
     
     const type = () => {
-      const currentText = texts[currentIndex];
-      
       // If deleting, remove a character, otherwise add a character
       setDisplayText(prev => 
         isDeleting 
@@ -46,14 +57,15 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
         setCurrentIndex((prev) => (prev + 1) % texts.length);
       } else {
         // Continue typing or deleting
-        timeout = setTimeout(type, isDeleting ? typingSpeed / 2 : typingSpeed);
+        const speed = isDeleting ? typingSpeed / 2 : typingSpeed;
+        timeout = setTimeout(type, speed);
       }
     };
     
-    timeout = setTimeout(type, delay);
+    timeout = setTimeout(type, typingSpeed);
     
     return () => clearTimeout(timeout);
-  }, [texts, currentIndex, displayText, isDeleting, delay, typingSpeed, pauseDuration]);
+  }, [texts, currentIndex, displayText, isDeleting, typingSpeed, pauseDuration, isTyping]);
 
   return (
     <div 

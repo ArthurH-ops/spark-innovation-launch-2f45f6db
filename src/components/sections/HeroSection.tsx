@@ -14,11 +14,12 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-s28-black">
       <PointCloudBackground />
       
       <div className="container mx-auto px-6 z-10 text-center">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <span className="block mb-2">S28 Forge</span>
           <div className="flex justify-center mx-auto">
             <div className="h-20 lg:h-24 flex items-center justify-center">
               <TypewriterText 

@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-6 z-10 text-center">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
           <div className="flex justify-center mx-auto">
-            <div className="typewriter-container h-20 lg:h-24 flex items-center justify-center">
+            <div className="h-20 lg:h-24 flex items-center justify-center">
               <TypewriterText 
                 texts={rotatingTexts} 
                 delay={500} 
@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
           </div>
         </h1>
         
-        <div className="mt-12 opacity-0 animate-fade-in" style={{ animationDelay: '6s', animationFillMode: 'forwards' }}>
+        <div className="mt-12 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
           <a 
             href="/philosophy" 
             className="btn-primary inline-flex items-center space-x-2"

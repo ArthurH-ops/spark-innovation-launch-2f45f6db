@@ -16,57 +16,52 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   typingSpeed = 100,
   pauseDuration = 2000
 }) => {
-  const textRef = useRef<HTMLDivElement>(null);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   
   useEffect(() => {
     if (!texts.length) return;
     
-    const element = textRef.current;
-    if (!element) return;
+    let timeout: NodeJS.Timeout;
     
-    let currentTimeout: NodeJS.Timeout;
-    
-    const typeText = () => {
-      const currentText = texts[currentTextIndex];
-      element.textContent = '';
-      let i = 0;
+    const type = () => {
+      const currentText = texts[currentIndex];
       
-      const typeInterval = setInterval(() => {
-        if (i < currentText.length) {
-          element.textContent += currentText.charAt(i);
-          i++;
-        } else {
-          clearInterval(typeInterval);
-          
-          // Wait before moving to the next text
-          currentTimeout = setTimeout(() => {
-            // Move to the next text or back to first text
-            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-          }, pauseDuration);
-        }
-      }, typingSpeed);
+      // If deleting, remove a character, otherwise add a character
+      setDisplayText(prev => 
+        isDeleting 
+          ? prev.substring(0, prev.length - 1) 
+          : currentText.substring(0, prev.length + 1)
+      );
       
-      return () => {
-        clearInterval(typeInterval);
-        clearTimeout(currentTimeout);
-      };
+      // Determine next action
+      if (!isDeleting && displayText === currentText) {
+        // Start deleting after pause
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseDuration);
+      } else if (isDeleting && displayText === '') {
+        setIsDeleting(false);
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+      } else {
+        // Continue typing or deleting
+        timeout = setTimeout(type, isDeleting ? typingSpeed / 2 : typingSpeed);
+      }
     };
     
-    const initialTimeout = setTimeout(typeText, delay);
+    timeout = setTimeout(type, delay);
     
-    return () => {
-      clearTimeout(initialTimeout);
-      clearTimeout(currentTimeout);
-    };
-  }, [texts, delay, currentTextIndex, typingSpeed, pauseDuration]);
+    return () => clearTimeout(timeout);
+  }, [texts, currentIndex, displayText, isDeleting, delay, typingSpeed, pauseDuration]);
 
   return (
     <div 
-      className={`typewriter inline-block text-center min-w-full ${className}`} 
-      ref={textRef}
+      className={`typewriter inline-block text-center min-w-full ${className}`}
       style={{ minHeight: '1.2em' }}
-    />
+    >
+      {displayText}
+    </div>
   );
 };
 

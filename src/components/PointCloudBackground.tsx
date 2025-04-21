@@ -43,10 +43,10 @@ const PointCloudBackground: React.FC = () => {
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Much darker blue gradient background
+      // Even darker blue gradient background
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#030409'); // Almost black blue
-      gradient.addColorStop(1, '#050911'); // Very dark blue
+      gradient.addColorStop(0, '#020307'); // Even darker blue/black
+      gradient.addColorStop(1, '#030509'); // Very dark blue/black
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       

@@ -3,7 +3,6 @@ import React from 'react';
 import Section from '@/components/Section';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   return (
@@ -26,7 +25,7 @@ const About: React.FC = () => {
                 <div className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg">
                   <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
                     <img 
-                      src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
+                      src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
                       alt="Arthur Handler"
                       className="w-full h-full object-cover"
                     />
@@ -42,7 +41,7 @@ const About: React.FC = () => {
                 <div className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg">
                   <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
                     <img 
-                      src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
+                      src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
                       alt="Kariem El Saedi"
                       className="w-full h-full object-cover"
                     />
@@ -61,13 +60,13 @@ const About: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-10 text-center">Partnerships</h2>
               
               <div className="grid md:grid-cols-2 gap-8">
-                {/* Partner 2 - Mazal (swapped position) */}
+                {/* Partner 1 - Aspekt */}
                 <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
                   <div className="h-16 mb-6 flex items-center justify-center">
                     <img 
                       src="/lovable-uploads/1b56a043-67eb-4ec1-90a5-188c15a51240.png"
                       alt="Mazal Logo"
-                      className="h-8 object-contain"
+                      className="max-h-12 object-contain"
                     />
                   </div>
                   <p className="text-center text-s28-gray-700">
@@ -75,13 +74,13 @@ const About: React.FC = () => {
                   </p>
                 </div>
                 
-                {/* Partner 1 - Aspekt (swapped position) */}
+                {/* Partner 2 - Mazal */}
                 <div className="p-6 border border-s28-gray-200 rounded-lg transition-all duration-300 hover:border-s28 hover:shadow-xl">
                   <div className="h-16 mb-6 flex items-center justify-center">
                     <img 
                       src="/lovable-uploads/964a2cdb-34c4-4669-bfec-1fa837fa159f.png"
                       alt="Aspekt Logo"
-                      className="h-8 object-contain"
+                      className="max-h-12 object-contain"
                     />
                   </div>
                   <p className="text-center text-s28-gray-700">

@@ -22,8 +22,8 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Text color is white when scrolled (darkbox) OR on home page
-  const textColorClass = (isScrolled || isHomePage) ? 'text-s28-white' : 'text-s28-black';
+  // Text color is always white when scrolled
+  const textColorClass = isScrolled ? 'text-s28-white' : (isHomePage ? 'text-s28-white' : 'text-s28-black');
 
   return (
     <header

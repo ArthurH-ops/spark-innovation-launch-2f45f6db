@@ -1,77 +1,73 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface TypewriterTextProps {
   texts: string[];
   className?: string;
-  delay?: number;
   typingSpeed?: number;
   pauseDuration?: number;
+  loop?: boolean;
 }
 
-const TypewriterText: React.FC<TypewriterTextProps> = ({ 
-  texts, 
+const TypewriterText: React.FC<TypewriterTextProps> = ({
+  texts,
   className = "",
-  delay = 0,
-  typingSpeed = 100,
-  pauseDuration = 2000
+  typingSpeed = 50,
+  pauseDuration = 2000,
+  loop = true
 }) => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
   
   useEffect(() => {
     if (!texts.length) return;
     
-    // Initial delay before starting the typing animation
-    const initialDelay = setTimeout(() => {
-      setIsTyping(true);
-    }, delay);
-    
-    return () => clearTimeout(initialDelay);
-  }, [texts, delay]);
-  
-  useEffect(() => {
-    if (!texts.length || !isTyping) return;
-    
-    const currentText = texts[currentIndex];
-    let timeout: NodeJS.Timeout;
-    
-    const type = () => {
-      // If deleting, remove a character, otherwise add a character
-      setDisplayText(prev => 
-        isDeleting 
-          ? prev.substring(0, prev.length - 1) 
-          : currentText.substring(0, prev.length + 1)
-      );
+    const handleTyping = () => {
+      const currentFullText = texts[currentTextIndex];
       
-      // Determine next action
-      if (!isDeleting && displayText === currentText) {
-        // Start deleting after pause
-        timeout = setTimeout(() => {
+      // Calculate the timeout value
+      let timeout = typingSpeed;
+      
+      // Logic for typing or deleting
+      if (!isDeleting) {
+        // When typing
+        setDisplayText(currentFullText.substring(0, displayText.length + 1));
+        
+        // If we've typed the full text, set to deleting mode after pause
+        if (displayText === currentFullText) {
+          timeout = pauseDuration;
           setIsDeleting(true);
-        }, pauseDuration);
-      } else if (isDeleting && displayText === '') {
-        setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % texts.length);
+        }
       } else {
-        // Continue typing or deleting
-        const speed = isDeleting ? typingSpeed / 2 : typingSpeed;
-        timeout = setTimeout(type, speed);
+        // When deleting
+        setDisplayText(currentFullText.substring(0, displayText.length - 1));
+        
+        // If we've deleted all text, move to next text
+        if (displayText === '') {
+          setIsDeleting(false);
+          setCurrentTextIndex((prevIndex) => 
+            loop ? (prevIndex + 1) % texts.length : Math.min(prevIndex + 1, texts.length - 1)
+          );
+        }
+        
+        // Make deletion faster than typing
+        timeout = typingSpeed * 0.5;
       }
+      
+      // Schedule the next typing action
+      setTimeout(handleTyping, timeout);
     };
     
-    timeout = setTimeout(type, typingSpeed);
+    // Start the typing effect
+    const typingTimer = setTimeout(handleTyping, 50);
     
-    return () => clearTimeout(timeout);
-  }, [texts, currentIndex, displayText, isDeleting, typingSpeed, pauseDuration, isTyping]);
-
+    // Clean up the timer when component unmounts
+    return () => clearTimeout(typingTimer);
+  }, [texts, displayText, currentTextIndex, isDeleting, typingSpeed, pauseDuration, loop]);
+  
   return (
-    <div 
-      className={`typewriter inline-block text-center min-w-full ${className}`}
-      style={{ minHeight: '1.2em' }}
-    >
+    <div className={`typewriter ${className}`} aria-live="polite">
       {displayText}
     </div>
   );

@@ -4,27 +4,21 @@ import TypewriterText from '../TypewriterText';
 import PointCloudBackground from '../PointCloudBackground';
 
 const HeroSection: React.FC = () => {
-  // Array of rotating phrases for the typewriter text
-  const rotatingTexts = [
-    "S28 Forge: unleashing your research's potential",
-    "S28 Forge: transforming discoveries into ventures",
-    "S28 Forge: bridging science and business",
-    "S28 Forge: accelerating innovation to market",
-    "S28 Forge: commercializing academic excellence"
-  ];
-
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-s28-black">
       <PointCloudBackground />
       <div className="container mx-auto px-6 z-10">
         <div className="text-center">
-          <div className="typewriter-container mx-auto mb-8">
-            <TypewriterText
-              texts={rotatingTexts}
-              typingSpeed={50}
-              pauseDuration={2000}
-              className="text-center text-white text-3xl md:text-4xl lg:text-5xl font-bold"
-            />
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">S28 Forge:</h1>
+            <div className="typewriter-container mx-auto">
+              <TypewriterText
+                texts={["unleashing your research's potential"]}
+                typingSpeed={50}
+                pauseDuration={2000}
+                className="text-center text-white text-3xl md:text-4xl lg:text-5xl font-bold"
+              />
+            </div>
           </div>
 
           <div className="mt-12 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>

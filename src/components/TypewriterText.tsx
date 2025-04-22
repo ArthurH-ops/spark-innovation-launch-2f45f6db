@@ -16,8 +16,8 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   pauseDuration = 2000,
   loop = true
 }) => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
   useEffect(() => {

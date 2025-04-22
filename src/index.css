@@ -51,10 +51,12 @@
   .typewriter-container {
     @apply inline-block;
     min-height: 60px;
+    width: 100%;
   }
 
   .typewriter-text {
-    @apply inline-flex items-center text-white;
+    @apply inline-flex items-center justify-center;
+    width: 100%;
   }
 
   .cursor {

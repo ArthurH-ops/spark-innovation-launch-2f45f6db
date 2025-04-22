@@ -18,18 +18,14 @@ const HeroSection: React.FC = () => {
       <PointCloudBackground />
       <div className="container mx-auto px-6 z-10">
         <div className="text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            <div className="flex justify-center">
-              <div className="h-20 md:h-24">
-                <TypewriterText
-                  texts={rotatingTexts}
-                  typingSpeed={50}
-                  pauseDuration={2000}
-                  className="text-center"
-                />
-              </div>
-            </div>
-          </h1>
+          <div className="typewriter-container mx-auto mb-8">
+            <TypewriterText
+              texts={rotatingTexts}
+              typingSpeed={50}
+              pauseDuration={2000}
+              className="text-center text-white text-3xl md:text-4xl lg:text-5xl font-bold"
+            />
+          </div>
 
           <div className="mt-12 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
             <a 

@@ -67,8 +67,9 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   }, [texts, displayText, currentTextIndex, isDeleting, typingSpeed, pauseDuration, loop]);
   
   return (
-    <div className={`typewriter ${className}`} aria-live="polite">
-      {displayText}
+    <div className={`typewriter-text ${className}`} aria-live="polite">
+      <span className="text-white">{displayText}</span>
+      <span className="cursor">|</span>
     </div>
   );
 };

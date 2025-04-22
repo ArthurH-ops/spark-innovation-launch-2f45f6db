@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Section from '../Section';
 import { Link } from 'react-router-dom';
@@ -39,10 +38,10 @@ const PhilosophySection: React.FC = () => {
 
         <div className="mt-12 text-center">
           <Link 
-            to="/philosophy" 
+            to="/contact" 
             className="btn-primary inline-flex items-center space-x-2"
           >
-            <span>Learn More</span>
+            <span>Get in Touch</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>

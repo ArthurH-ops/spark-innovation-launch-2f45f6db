@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -22,7 +21,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Text color is always white when scrolled
   const textColorClass = isScrolled ? 'text-s28-white' : (isHomePage ? 'text-s28-white' : 'text-s28-black');
 
   return (
@@ -33,10 +31,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className={textColorClass + " text-2xl font-semibold"}>
-          S28 Forge
+          <span className="text-sm">s</span>28 Forge
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link to="/philosophy" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
             Philosophy
@@ -47,17 +44,11 @@ const Navbar = () => {
           <Link to="/contact" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
             Contact
           </Link>
-          <a 
-            href="https://calendly.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="btn-primary animate-pulse-glow"
-          >
-            Book a Meeting
-          </a>
+          <Link to="/contact" className="btn-primary">
+            Get in Touch
+          </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
           className={`md:hidden ${textColorClass} hover:text-s28 transition-colors`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -66,43 +57,38 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <nav className="md:hidden absolute top-full left-0 w-full bg-s28-black/95 backdrop-blur-md py-6 animate-fade-in">
-          <div className="container mx-auto px-6 flex flex-col space-y-4">
-            <Link 
-              to="/philosophy" 
-              className="text-s28-white hover:text-s28 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Philosophy
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-s28-white hover:text-s28 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              About Us
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-s28-white hover:text-s28 transition-colors py-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <a 
-              href="https://calendly.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-primary text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Book a Meeting
-            </a>
-          </div>
-        </nav>
-      )}
+      <nav className={isMobileMenuOpen ? "md:hidden absolute top-full left-0 w-full bg-s28-black/95 backdrop-blur-md py-6 animate-fade-in" : "hidden"}>
+        <div className="container mx-auto px-6 flex flex-col space-y-4">
+          <Link 
+            to="/philosophy" 
+            className="text-s28-white hover:text-s28 transition-colors py-2"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Philosophy
+          </Link>
+          <Link 
+            to="/about" 
+            className="text-s28-white hover:text-s28 transition-colors py-2"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About Us
+          </Link>
+          <Link 
+            to="/contact" 
+            className="text-s28-white hover:text-s28 transition-colors py-2"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contact
+          </Link>
+          <Link 
+            to="/contact" 
+            className="btn-primary text-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Get in Touch
+          </Link>
+        </div>
+      </nav>
     </header>
   );
 };

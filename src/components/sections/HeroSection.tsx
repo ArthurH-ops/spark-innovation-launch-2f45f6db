@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PointCloudBackground from '../PointCloudBackground';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   return (
@@ -15,15 +16,15 @@ const HeroSection: React.FC = () => {
           </div>
 
           <div className="mt-12 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
-            <a 
-              href="/philosophy" 
+            <Link 
+              to="/contact" 
               className="btn-primary inline-flex items-center space-x-2"
             >
-              <span>Start Your Journey</span>
+              <span>Get in Touch</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 
 import React from 'react';
-import TypewriterText from '../TypewriterText';
 import PointCloudBackground from '../PointCloudBackground';
 
 const HeroSection: React.FC = () => {
@@ -10,15 +9,9 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-6 z-10">
         <div className="text-center">
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">S28 Forge:</h1>
-            <div className="typewriter-container mx-auto">
-              <TypewriterText
-                texts={["unleashing your research's potential"]}
-                typingSpeed={50}
-                pauseDuration={2000}
-                className="text-center text-white text-3xl md:text-4xl lg:text-5xl font-bold"
-              />
-            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              unleashing your research's potential
+            </h1>
           </div>
 
           <div className="mt-12 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>

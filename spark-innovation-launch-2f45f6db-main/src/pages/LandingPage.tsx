@@ -10,6 +10,7 @@ import PhilosophySection from "@/components/sections/PhilosophySection";
 import PhilosophyContent from "@/components/sections/PhilosophyContent";
 // Import ContactForm for the contact section
 import ContactForm from "@/components/ContactForm";
+import TimelineSection from "@/components/sections/TimelineSection";
 
 const LandingPage: React.FC = () => {
   return (
@@ -106,8 +107,7 @@ const LandingPage: React.FC = () => {
                       />
                     </div>
                     <p className="text-center text-s28-gray-700">
-                      Supporting prototyping and technical validation of
-                      innovative research concepts.
+                      Aspekt supports our mission by providing state-of-the-art prototyping and technical validation, helping us turn innovative research into scalable solutions.
                     </p>
                   </div>
 
@@ -124,8 +124,7 @@ const LandingPage: React.FC = () => {
                       />
                     </div>
                     <p className="text-center text-s28-gray-700">
-                      Providing legal, financial, and market launch expertise
-                      for research commercialization.
+                      Mazal brings deep expertise in legal, financial, and go-to-market strategy, ensuring that our ventures are built on a solid foundation for growth and success.
                     </p>
                   </div>
                 </div>
@@ -133,6 +132,9 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Timeline Section */}
+        <TimelineSection />
 
         <section
           id="contact"

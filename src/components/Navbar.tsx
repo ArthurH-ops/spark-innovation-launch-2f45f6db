@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,72 +18,105 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const textColorClass = isScrolled ? 'text-s28-white' : (isHomePage ? 'text-s28-white' : 'text-s28-black');
+  const textColorClass = isScrolled ? 'text-s28-white' : 'text-s28-white';
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80, // Offset for navbar height
+        behavior: 'smooth'
+      });
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-s28-black/90 backdrop-blur-md py-3' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-s28-black/90 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className={textColorClass + " text-2xl font-semibold"}>
-          <span className="text-sm">s</span>28 Forge
-        </Link>
+        <button 
+          onClick={() => scrollToSection('home')}
+          className={`${textColorClass} text-2xl font-semibold transition-all duration-300 hover:text-s28 bg-transparent border-none cursor-pointer`}
+        >
+          <span>s28 Forge</span>
+        </button>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/philosophy" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
+          <button 
+            onClick={() => scrollToSection('home')}
+            className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
+            aria-label="Jump to Top"
+          >
+            Home
+          </button>
+          <button 
+            onClick={() => scrollToSection('philosophy')}
+            className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
+          >
             Philosophy
-          </Link>
-          <Link to="/about" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
+          </button>
+          <button 
+            onClick={() => scrollToSection('about')}
+            className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
+          >
             About Us
-          </Link>
-          <Link to="/contact" className={`${textColorClass} hover:text-s28 transition-colors underline-hover`}>
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
+          >
             Contact
-          </Link>
-          <Link to="/contact" className="btn-primary">
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="btn-primary"
+          >
             Get in Touch
-          </Link>
+          </button>
         </nav>
 
         <button
-          className={`md:hidden ${textColorClass} hover:text-s28 transition-colors`}
+          className={`md:hidden ${textColorClass} hover:text-s28 transition-all duration-300 transform hover:scale-110`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      <nav className={isMobileMenuOpen ? "md:hidden absolute top-full left-0 w-full bg-s28-black/95 backdrop-blur-md py-6 animate-fade-in" : "hidden"}>
+      <nav className={isMobileMenuOpen ? "md:hidden absolute top-full left-0 w-full bg-s28-black/95 backdrop-blur-md py-6 shadow-lg transition-all duration-300" : "hidden"}>
         <div className="container mx-auto px-6 flex flex-col space-y-4">
-          <Link 
-            to="/philosophy" 
-            className="text-s28-white hover:text-s28 transition-colors py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button 
+            onClick={() => scrollToSection('philosophy')}
+            className="text-s28-white hover:text-s28 transition-all duration-300 py-2 transform hover:translate-x-2"
+            type="button"
           >
             Philosophy
-          </Link>
-          <Link 
-            to="/about" 
-            className="text-s28-white hover:text-s28 transition-colors py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </button>
+          <button 
+            onClick={() => scrollToSection('about')}
+            className="text-s28-white hover:text-s28 transition-all duration-300 py-2 transform hover:translate-x-2"
+            type="button"
           >
             About Us
-          </Link>
-          <Link 
-            to="/contact" 
-            className="text-s28-white hover:text-s28 transition-colors py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="text-s28-white hover:text-s28 transition-all duration-300 py-2 transform hover:translate-x-2"
+            type="button"
           >
             Contact
-          </Link>
-          <Link 
-            to="/contact" 
-            className="btn-primary text-center"
-            onClick={() => setIsMobileMenuOpen(false)}
+          </button>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className="btn-primary text-center hover-scale animate-pulse-subtle"
+            type="button"
           >
             Get in Touch
-          </Link>
+          </button>
         </div>
       </nav>
     </header>

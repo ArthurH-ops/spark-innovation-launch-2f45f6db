@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface TypewriterTextProps {
   texts: string[];
@@ -7,6 +6,7 @@ interface TypewriterTextProps {
   typingSpeed?: number;
   pauseDuration?: number;
   loop?: boolean;
+  cursorStyle?: string;
 }
 
 const TypewriterText: React.FC<TypewriterTextProps> = ({
@@ -14,62 +14,75 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   className = "",
   typingSpeed = 50,
   pauseDuration = 2000,
-  loop = true
+  loop = true,
+  cursorStyle = "text-s28"
 }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  
+  const [isTyping, setIsTyping] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     if (!texts.length) return;
     
-    const handleTyping = () => {
-      const currentFullText = texts[currentTextIndex];
-      
-      // Calculate the timeout value
-      let timeout = typingSpeed;
-      
-      // Logic for typing or deleting
-      if (!isDeleting) {
-        // When typing
-        setDisplayText(currentFullText.substring(0, displayText.length + 1));
-        
-        // If we've typed the full text, set to deleting mode after pause
-        if (displayText === currentFullText) {
-          timeout = pauseDuration;
-          setIsDeleting(true);
-        }
+    const currentFullText = texts[currentTextIndex];
+    
+    // Typing effect
+    if (isTyping && isVisible) {
+      if (displayText.length < currentFullText.length) {
+        typingTimerRef.current = setTimeout(() => {
+          setDisplayText(currentFullText.substring(0, displayText.length + 1));
+        }, typingSpeed);
       } else {
-        // When deleting
-        setDisplayText(currentFullText.substring(0, displayText.length - 1));
-        
-        // If we've deleted all text, move to next text
-        if (displayText === '') {
-          setIsDeleting(false);
-          setCurrentTextIndex((prevIndex) => 
-            loop ? (prevIndex + 1) % texts.length : Math.min(prevIndex + 1, texts.length - 1)
-          );
-        }
-        
-        // Make deletion faster than typing
-        timeout = typingSpeed * 0.5;
+        // Finished typing current text
+        typingTimerRef.current = setTimeout(() => {
+          setIsTyping(false);
+        }, pauseDuration);
       }
-      
-      // Schedule the next typing action
-      setTimeout(handleTyping, timeout);
+    } 
+    // Fade out effect
+    else if (!isTyping && isVisible) {
+      fadeTimerRef.current = setTimeout(() => {
+        setIsVisible(false);
+      }, 400);
+    } 
+    // Reset for next text
+    else if (!isVisible) {
+      fadeTimerRef.current = setTimeout(() => {
+        setCurrentTextIndex((prev) => loop ? (prev + 1) % texts.length : Math.min(prev + 1, texts.length - 1));
+        setDisplayText('');
+        setIsTyping(true);
+        setIsVisible(true);
+      }, 400);
+    }
+
+    return () => {
+      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+      if (fadeTimerRef.current) clearTimeout(fadeTimerRef.current);
     };
-    
-    // Start the typing effect
-    const typingTimer = setTimeout(handleTyping, 50);
-    
-    // Clean up the timer when component unmounts
-    return () => clearTimeout(typingTimer);
-  }, [texts, displayText, currentTextIndex, isDeleting, typingSpeed, pauseDuration, loop]);
-  
+  }, [texts, displayText, currentTextIndex, isTyping, isVisible, typingSpeed, pauseDuration, loop]);
+
   return (
-    <div className={`typewriter-text ${className}`} aria-live="polite">
-      <span className="text-white">{displayText}</span>
-      <span className="cursor">|</span>
+    <div 
+      className={`typewriter-container ${className}`}
+      aria-live="polite"
+    >
+      <div 
+        className="typewriter-text"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(-10px)',
+          transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+        }}
+      >
+        <span className="text-white">{displayText}</span>
+        <span className={`cursor ${cursorStyle}`} style={{ 
+          opacity: isTyping ? 1 : 0,
+          transition: 'opacity 0.3s ease'
+        }}>|</span>
+      </div>
     </div>
   );
 };

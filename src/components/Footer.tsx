@@ -1,9 +1,17 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
 
 const Footer = () => {
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <footer className="bg-s28-black py-8">
       <div className="container mx-auto px-6">
@@ -15,18 +23,30 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-6">
-            <Link to="/philosophy" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
+            <button 
+              onClick={() => scrollToSection('philosophy')} 
+              className="text-s28-gray-300 hover:text-s28 text-sm transition-colors bg-transparent border-none cursor-pointer"
+            >
               Philosophy
-            </Link>
-            <Link to="/about" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-s28-gray-300 hover:text-s28 text-sm transition-colors bg-transparent border-none cursor-pointer"
+            >
               About Us
-            </Link>
-            <Link to="/contact" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')} 
+              className="text-s28-gray-300 hover:text-s28 text-sm transition-colors bg-transparent border-none cursor-pointer"
+            >
               Contact
-            </Link>
-            <Link to="/imprint" className="text-s28-gray-300 hover:text-s28 text-sm transition-colors">
-              Imprint
-            </Link>
+            </button>
+            <button 
+              onClick={() => scrollToSection('home')} 
+              className="text-s28-gray-300 hover:text-s28 text-sm transition-colors bg-transparent border-none cursor-pointer"
+            >
+              Home
+            </button>
             <a 
               href="https://linkedin.com" 
               target="_blank" 

@@ -41,7 +41,7 @@ const About: React.FC = () => {
                 <div className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg">
                   <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
                     <img 
-                      src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
+                      src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
                       alt="Arthur Handler"
                       className="w-full h-full object-cover"
                     />

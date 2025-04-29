@@ -1,7 +1,10 @@
-
 import React, { useEffect, useRef } from 'react';
 
-const PointCloudBackground: React.FC = () => {
+interface PointCloudBackgroundProps {
+  density?: number;
+}
+
+const PointCloudBackground: React.FC<PointCloudBackgroundProps> = ({ density = 1 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   useEffect(() => {

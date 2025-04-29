@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -20,23 +19,29 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://formspree.io/f/xqaqebbo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        organization: '',
-        message: ''
+      setFormData({ name: '', email: '', organization: '', message: '' });
+    } catch (error: any) {
+      toast({
+        title: "Error sending message",
+        description: error.message,
+        variant: "destructive",
       });
-      
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (

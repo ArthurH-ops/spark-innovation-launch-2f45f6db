@@ -10,7 +10,9 @@ import PhilosophySection from "@/components/sections/PhilosophySection";
 import PhilosophyContent from "@/components/sections/PhilosophyContent";
 // Import ContactForm for the contact section
 import ContactForm from "@/components/ContactForm";
-import TimelineSection from "@/components/sections/TimelineSection";
+import MissionSection from "@/components/sections/MissionSection";
+import ValuesSection from "@/components/sections/ValuesSection";
+import FAQSection from "@/components/sections/FAQSection";
 
 const LandingPage: React.FC = () => {
   return (
@@ -20,6 +22,10 @@ const LandingPage: React.FC = () => {
         <section id="home" className="relative">
           <HeroSection />
         </section>
+
+        <MissionSection />
+        <ValuesSection />
+        <FAQSection />
 
         <section
           id="philosophy"
@@ -133,9 +139,6 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <TimelineSection />
-
         <section
           id="contact"
           className="py-24 relative bg-s28-black text-white"
@@ -147,22 +150,6 @@ const LandingPage: React.FC = () => {
                 Get in Touch
               </h2>
               <div className="w-20 h-1 bg-s28 mx-auto"></div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-s28 mx-auto md:mx-0">
-                <img
-                  src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
-                  alt="Kariem El Saedi"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-s28 mx-auto md:mx-0">
-                <img
-                  src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
-                  alt="Arthur Handler"
-                  className="w-full h-full object-cover"
-                />
-              </div>
             </div>
             <div className="max-w-3xl mx-auto">
               <ContactForm />

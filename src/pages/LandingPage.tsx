@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import PointCloudBackground from "@/components/PointCloudBackground";
+import { Linkedin } from "lucide-react";
 
 // Import sections from existing pages
 import PhilosophySection from "@/components/sections/PhilosophySection";
@@ -11,8 +12,6 @@ import PhilosophyContent from "@/components/sections/PhilosophyContent";
 // Import ContactForm for the contact section
 import ContactForm from "@/components/ContactForm";
 import MissionSection from "@/components/sections/MissionSection";
-import ValuesSection from "@/components/sections/ValuesSection";
-import FAQSection from "@/components/sections/FAQSection";
 
 const LandingPage: React.FC = () => {
   return (
@@ -24,8 +23,6 @@ const LandingPage: React.FC = () => {
         </section>
 
         <MissionSection />
-        <ValuesSection />
-        <FAQSection />
 
         <section
           id="philosophy"
@@ -54,8 +51,37 @@ const LandingPage: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Team Member 1 */}
                 <div
-                  className="flex flex-col items-center md:items-end p-6 transition-all duration-300 hover:shadow-xl rounded-lg animate-fade-in-up"
+                  className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg animate-fade-in-up"
                   style={{ animationDelay: "0.2s" }}
+                >
+                  <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
+                    <img
+                      src="/lovable-uploads/f0f1f21d-26f6-48dc-87df-cda05061e370.png"
+                      alt="Arthur Handler"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <h3 className="text-xl font-semibold">Arthur Handler</h3>
+                    <a 
+                      href="https://www.linkedin.com/in/arthur-handler/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-s28 hover:text-s28-dark transition-colors"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  </div>
+                  <p className="text-s28 mb-4">Co-founder</p>
+                  <p className="text-center text-s28-gray-600">
+                    Arthur is an engineer with a focus on product developemnt and financial structures. In the past Arthur was involved in different projects in the field of creating companies out of research results. Furthermore he has worked in various industrial and consulting companies, where he learned to incorporate technological and economical frameworks.
+                  </p>
+                </div>
+
+                {/* Team Member 2 */}
+                <div
+                  className="flex flex-col items-center p-6 transition-all duration-300 hover:shadow-xl rounded-lg animate-fade-in-up"
+                  style={{ animationDelay: "0.4s" }}
                 >
                   <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
                     <img
@@ -64,31 +90,20 @@ const LandingPage: React.FC = () => {
                       className="w-full h-full object-cover object-left"
                     />
                   </div>
-                  <h3 className="text-xl font-semibold mb-1">
-                    Kariem El Saedi
-                  </h3>
-                  <p className="text-s28 mb-4">Co-founder & COO</p>
-                  <p className="text-center text-s28-gray-600">
-                    Kariem brings a decade of experience in business development and startup operations. Passionate about bridging science and entrepreneurship, he specializes in building strong partnerships and supporting researchers as they navigate the journey from lab to market.
-                  </p>
-                </div>
-
-                {/* Team Member 2 */}
-                <div
-                  className="flex flex-col items-center md:items-start p-6 transition-all duration-300 hover:shadow-xl rounded-lg animate-fade-in-up"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  <div className="w-48 h-48 rounded-full mb-6 overflow-hidden">
-                    <img
-                      src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
-                      alt="Arthur Handler"
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <h3 className="text-xl font-semibold">Kariem El Saedi</h3>
+                    <a 
+                      href="https://www.linkedin.com/in/kariem-elsaedi/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-s28 hover:text-s28-dark transition-colors"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
                   </div>
-                  <h3 className="text-xl font-semibold mb-1">Arthur Handler</h3>
-                  <p className="text-s28 mb-4">Founder & CEO</p>
+                  <p className="text-s28 mb-4">Co-founder</p>
                   <p className="text-center text-s28-gray-600">
-                    Arthur is a scientist-turned-entrepreneur with a passion for turning research into real-world impact. With expertise in technology transfer and early-stage venture building, he leads our mission to empower innovators and accelerate scientific progress.
+                    Kariem has great passion for research and its creative side. In his personal blog he loves to discuss trending topics in the field and to brainstorm new business ideas. Kariem has worked both on the Start-Up and research side of the spectrum and loves to combine different thinking structures to problems.
                   </p>
                 </div>
               </div>
@@ -107,10 +122,21 @@ const LandingPage: React.FC = () => {
                   >
                     <div className="h-16 mb-6 flex items-center justify-center">
                       <img
-                        src="/lovable-uploads/964a2cdb-34c4-4669-bfec-1fa837fa159f.png"
-                        alt="Aspekt Logo"
+                        src="/lovable-uploads/1b56a043-67eb-4ec1-90a5-188c15a51240.png"
+                        alt="Aspekt Development Logo"
                         className="max-h-12 object-contain"
                       />
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <h3 className="text-xl font-semibold">Aspekt Development</h3>
+                      <a 
+                        href="https://www.linkedin.com/company/aspekt-development-gmbh/posts/?feedView=all" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-s28 hover:text-s28-dark transition-colors"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
                     </div>
                     <p className="text-center text-s28-gray-700">
                       Aspekt supports our mission by providing state-of-the-art prototyping and technical validation, helping us turn innovative research into scalable solutions.
@@ -124,10 +150,21 @@ const LandingPage: React.FC = () => {
                   >
                     <div className="h-16 mb-6 flex items-center justify-center">
                       <img
-                        src="/lovable-uploads/1b56a043-67eb-4ec1-90a5-188c15a51240.png"
-                        alt="Mazal Logo"
+                        src="/lovable-uploads/99f79872-0640-4d7e-ba49-c9f3c82ab4ef.png"
+                        alt="Mazal Advisory Logo"
                         className="max-h-12 object-contain"
                       />
+                    </div>
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <h3 className="text-xl font-semibold">Mazal Advisory</h3>
+                      <a 
+                        href="https://www.linkedin.com/in/markus-mazal-a47424150/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-s28 hover:text-s28-dark transition-colors"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
                     </div>
                     <p className="text-center text-s28-gray-700">
                       Mazal brings deep expertise in legal, financial, and go-to-market strategy, ensuring that our ventures are built on a solid foundation for growth and success.

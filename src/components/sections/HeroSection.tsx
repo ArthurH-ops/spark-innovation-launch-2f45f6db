@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
         <div className="text-center">
           <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
-              Empowering Research. Igniting Innovation.
+              Unleashing your research's potential
             </h1>
             <TypewriterText
               texts={[

@@ -16,7 +16,7 @@ export const AboutSection: React.FC = () => {
           <h3 className="text-xl font-semibold mb-1">Kariem El Saedi</h3>
           <p className="text-s28 mb-4">Co-founder & COO</p>
           <p className="text-center text-s28-gray-600">
-            Kariem brings a decade of experience in business development and startup operations. Passionate about bridging science and entrepreneurship, he specializes in building strong partnerships and supporting researchers as they navigate the journey from lab to market.
+            Kariem has great passion for research and its creative side. In his personal blog he loves to discuss trending topics in the field and to brainstorm new business ideas. Kariem has worked both on the Start-Up and research side of the spectrum and loves to combine different thinking structures to problems.
           </p>
         </div>
         
@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
           <h3 className="text-xl font-semibold mb-1">Arthur Handler</h3>
           <p className="text-s28 mb-4">Founder & CEO</p>
           <p className="text-center text-s28-gray-600">
-            Arthur is a scientist-turned-entrepreneur with a passion for turning research into real-world impact. With expertise in technology transfer and early-stage venture building, he leads our mission to empower innovators and accelerate scientific progress.
+            Arthur is an engineer with a focus on product developemnt and financial structures. In the past Arthur was involved in different projects in the field of creating companies out of research results. Furthermore he has worked in various industrial and consulting companies, where he learned to incorporate technological and economical frameworks.
           </p>
         </div>
       </div>

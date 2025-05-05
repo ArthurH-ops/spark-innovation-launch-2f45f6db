@@ -2,15 +2,21 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useLanguage } from '@/context/LanguageContext';
+import ContactForm from '../ContactForm';
 
 export const ContactSection: React.FC = () => {
+  const { translate, currentLanguage } = useLanguage();
+  
   return (
     <div className="max-w-4xl mx-auto">
       <div className="grid md:grid-cols-2 gap-12">
         <div className="animate-fade-in-left" style={{ animationDelay: '0.2s' }}>
-          <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
+          <h3 className="text-2xl font-semibold mb-6">{translate('contact.title')}</h3>
           <p className="mb-8 text-s28-gray-300">
-            Ready to transform your research into impact? We're here to help you navigate the journey from lab to market.
+            {currentLanguage === 'en' 
+              ? 'Ready to transform your research into impact? We\'re here to help you navigate the journey from lab to market.'
+              : 'Bereit, Ihre Forschung in Wirkung umzusetzen? Wir helfen Ihnen, den Weg vom Labor zum Markt zu meistern.'}
           </p>
           
           <div className="space-y-4">
@@ -21,7 +27,7 @@ export const ContactSection: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h4 className="font-semibold">Phone</h4>
+                <h4 className="font-semibold">{currentLanguage === 'en' ? 'Phone' : 'Telefon'}</h4>
                 <p className="text-s28-gray-300">+49 123 456 7890</p>
               </div>
             </div>
@@ -47,7 +53,7 @@ export const ContactSection: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h4 className="font-semibold">Location</h4>
+                <h4 className="font-semibold">{currentLanguage === 'en' ? 'Location' : 'Standort'}</h4>
                 <p className="text-s28-gray-300">Berlin, Germany</p>
               </div>
             </div>
@@ -55,34 +61,7 @@ export const ContactSection: React.FC = () => {
         </div>
         
         <div className="animate-fade-in-right" style={{ animationDelay: '0.4s' }}>
-          <form className="space-y-6">
-            <div>
-              <Input 
-                type="text" 
-                placeholder="Your Name" 
-                className="input-field bg-transparent text-white border-s28-gray-600 focus:border-s28"
-              />
-            </div>
-            
-            <div>
-              <Input 
-                type="email" 
-                placeholder="Your Email" 
-                className="input-field bg-transparent text-white border-s28-gray-600 focus:border-s28"
-              />
-            </div>
-            
-            <div>
-              <Textarea 
-                placeholder="Your Message" 
-                className="input-field bg-transparent text-white border-s28-gray-600 focus:border-s28 min-h-[150px]"
-              />
-            </div>
-            
-            <Button className="btn-primary w-full animate-pulse-subtle">
-              Send Message
-            </Button>
-          </form>
+          <ContactForm />
         </div>
       </div>
     </div>

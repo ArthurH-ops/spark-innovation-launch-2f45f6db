@@ -11,9 +11,15 @@ const Index: React.FC = () => {
     <>
       <Navbar />
       <main>
-        <HeroSection />
-        <OfferSection />
-        <PhilosophySection />
+        <section id="home" className="relative">
+          <HeroSection />
+        </section>
+        <section id="offer">
+          <OfferSection />
+        </section>
+        <section id="philosophy">
+          <PhilosophySection />
+        </section>
       </main>
       <Footer />
     </>

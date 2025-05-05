@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ContactForm: React.FC = () => {
   const { toast } = useToast();
+  const { translate, currentLanguage } = useLanguage();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,20 +25,26 @@ const ContactForm: React.FC = () => {
     try {
       const response = await fetch("https://formspree.io/f/xqaqebbo", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept-Language": currentLanguage 
+        },
+        body: JSON.stringify({
+          ...formData,
+          language: currentLanguage
+        }),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error(currentLanguage === 'en' ? "Network response was not ok" : "Netzwerkantwort war nicht in Ordnung");
       }
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: currentLanguage === 'en' ? "Message sent!" : "Nachricht gesendet!",
+        description: currentLanguage === 'en' ? "We'll get back to you as soon as possible." : "Wir melden uns so schnell wie möglich bei Ihnen.",
       });
       setFormData({ name: '', email: '', organization: '', message: '' });
     } catch (error: any) {
       toast({
-        title: "Error sending message",
+        title: currentLanguage === 'en' ? "Error sending message" : "Fehler beim Senden der Nachricht",
         description: error.message,
         variant: "destructive",
       });
@@ -50,7 +59,7 @@ const ContactForm: React.FC = () => {
         <input 
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder={translate('contact.form.name')}
           value={formData.name}
           onChange={handleChange}
           required
@@ -62,7 +71,7 @@ const ContactForm: React.FC = () => {
         <input 
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder={translate('contact.form.email')}
           value={formData.email}
           onChange={handleChange}
           required
@@ -74,7 +83,7 @@ const ContactForm: React.FC = () => {
         <input 
           type="text"
           name="organization"
-          placeholder="Organization"
+          placeholder={translate('contact.form.organization')}
           value={formData.organization}
           onChange={handleChange}
           className="input-field"
@@ -84,7 +93,7 @@ const ContactForm: React.FC = () => {
       <div className="mb-8">
         <textarea 
           name="message"
-          placeholder="Message"
+          placeholder={translate('contact.form.message')}
           value={formData.message}
           onChange={handleChange}
           required
@@ -99,7 +108,7 @@ const ContactForm: React.FC = () => {
           className="btn-primary w-full max-w-xs"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send'}
+          {isSubmitting ? translate('contact.form.sending') : translate('contact.form.send')}
         </button>
       </div>
     </form>

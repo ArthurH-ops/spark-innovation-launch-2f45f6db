@@ -12,11 +12,18 @@ import PhilosophyContent from "@/components/sections/PhilosophyContent";
 // Import ContactForm for the contact section
 import ContactForm from "@/components/ContactForm";
 import MissionSection from "@/components/sections/MissionSection";
+import SuccessStoriesSection from "@/components/sections/SuccessStoriesSection";
+import S28ExplainedSection from "@/components/sections/S28ExplainedSection";
+import CtaFloatingButton from "@/components/CtaFloatingButton";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import MetricsSection from "@/components/sections/MetricsSection";
+import WorkflowTimelineSection from "@/components/sections/WorkflowTimelineSection";
 
 const LandingPage: React.FC = () => {
   return (
     <>
       <Navbar />
+      <CtaFloatingButton />
       <main>
         <section id="home" className="relative">
           <HeroSection />
@@ -38,6 +45,16 @@ const LandingPage: React.FC = () => {
             <PhilosophyContent />
           </div>
         </section>
+
+        <SuccessStoriesSection />
+
+        <MetricsSection />
+
+        <TestimonialsSection />
+
+        <WorkflowTimelineSection />
+
+        <S28ExplainedSection />
 
         <section id="about" className="py-24 bg-s28-gray-100">
           <div className="container mx-auto px-6">
@@ -74,7 +91,7 @@ const LandingPage: React.FC = () => {
                   </div>
                   <p className="text-s28 mb-4">Co-founder</p>
                   <p className="text-center text-s28-gray-600">
-                    Arthur is an engineer with a focus on product developemnt and financial structures. In the past Arthur was involved in different projects in the field of creating companies out of research results. Furthermore he has worked in various industrial and consulting companies, where he learned to incorporate technological and economical frameworks.
+                    Arthur is an engineer with a focus on product development and financial structures. In the past Arthur was involved in different projects in the field of creating companies out of research results. Furthermore he has worked in various industrial and consulting companies, where he learned to incorporate technological and economical frameworks.
                   </p>
                 </div>
 

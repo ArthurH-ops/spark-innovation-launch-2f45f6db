@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export const AboutSection: React.FC = () => {
+  const { translate } = useLanguage();
+  
   return (
     <div className="max-w-5xl mx-auto">
       <div className="grid md:grid-cols-2 gap-8">
@@ -14,9 +17,9 @@ export const AboutSection: React.FC = () => {
             />
           </div>
           <h3 className="text-xl font-semibold mb-1">Kariem El Saedi</h3>
-          <p className="text-s28 mb-4">Co-founder & COO</p>
+          <p className="text-s28 mb-4">{translate('about.team_kariem_title')}</p>
           <p className="text-center text-s28-gray-600">
-            Kariem has great passion for research and its creative side. In his personal blog he loves to discuss trending topics in the field and to brainstorm new business ideas. Kariem has worked both on the Start-Up and research side of the spectrum and loves to combine different thinking structures to problems.
+            {translate('about.team_kariem_desc')}
           </p>
         </div>
         
@@ -30,16 +33,16 @@ export const AboutSection: React.FC = () => {
             />
           </div>
           <h3 className="text-xl font-semibold mb-1">Arthur Handler</h3>
-          <p className="text-s28 mb-4">Founder & CEO</p>
+          <p className="text-s28 mb-4">{translate('about.team_arthur_title')}</p>
           <p className="text-center text-s28-gray-600">
-            Arthur is an engineer with a focus on product developemnt and financial structures. In the past Arthur was involved in different projects in the field of creating companies out of research results. Furthermore he has worked in various industrial and consulting companies, where he learned to incorporate technological and economical frameworks.
+            {translate('about.team_arthur_desc')}
           </p>
         </div>
       </div>
       
       {/* Partnerships Section */}
       <div className="mt-16">
-        <h3 className="text-2xl font-semibold mb-10 text-center">Partnerships</h3>
+        <h3 className="text-2xl font-semibold mb-10 text-center">{translate('about.partnerships')}</h3>
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Partner 1 - Aspekt */}
@@ -52,7 +55,7 @@ export const AboutSection: React.FC = () => {
               />
             </div>
             <p className="text-center text-s28-gray-700">
-              Aspekt supports our mission by providing state-of-the-art prototyping and technical validation, helping us turn innovative research into scalable solutions.
+              {translate('about.partner_aspekt_desc')}
             </p>
           </div>
           
@@ -66,7 +69,7 @@ export const AboutSection: React.FC = () => {
               />
             </div>
             <p className="text-center text-s28-gray-700">
-              Mazal brings deep expertise in legal, financial, and go-to-market strategy, ensuring that our ventures are built on a solid foundation for growth and success.
+              {translate('about.partner_mazal_desc')}
             </p>
           </div>
         </div>

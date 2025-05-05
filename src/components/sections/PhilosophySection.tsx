@@ -1,7 +1,10 @@
 import React from 'react';
 import Section from '../Section';
+import { useLanguage } from '@/context/LanguageContext';
 
 const PhilosophySection: React.FC = () => {
+  const { translate } = useLanguage();
+  
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -17,30 +20,30 @@ const PhilosophySection: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Our Philosophy
+            {translate('philosophy.title')}
           </h2>
           <div className="w-20 h-1 bg-s28 mx-auto"></div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           <div className="transition-all duration-500 hover:transform hover:scale-105 p-6 rounded-lg border border-transparent hover:border-s28-gray-300 hover:shadow-xl bg-black/30 backdrop-blur-sm">
-            <h3 className="text-xl font-semibold mb-4 text-s28">Why We Exist</h3>
+            <h3 className="text-xl font-semibold mb-4 text-s28">{translate('philosophy.what_we_stand_for')}</h3>
             <p className="text-s28-gray-200 text-justify">
-              Innovation is the engine of progress. We exist to ensure that world-changing research doesn't stay locked in the lab, but finds its way into society—solving urgent problems, creating new industries, and building a better tomorrow. Our mission is to empower scientists and visionaries to realize the true impact of their discoveries.
+              {translate('philosophy.what_we_stand_for_desc')}
             </p>
           </div>
           
           <div className="transition-all duration-500 hover:transform hover:scale-105 p-6 rounded-lg border border-transparent hover:border-s28-gray-300 hover:shadow-xl bg-black/30 backdrop-blur-sm">
-            <h3 className="text-xl font-semibold mb-4 text-s28">Who We Help</h3>
+            <h3 className="text-xl font-semibold mb-4 text-s28">{translate('philosophy.who_we_serve')}</h3>
             <p className="text-s28-gray-200 text-justify">
-              We serve pioneering researchers, ambitious founders, and forward-thinking institutions ready to turn breakthrough ideas into thriving ventures. We also partner with investors and industry leaders eager to support and scale transformative technologies.
+              {translate('philosophy.who_we_serve_desc')}
             </p>
           </div>
           
           <div className="transition-all duration-500 hover:transform hover:scale-105 p-6 rounded-lg border border-transparent hover:border-s28-gray-300 hover:shadow-xl bg-black/30 backdrop-blur-sm">
-            <h3 className="text-xl font-semibold mb-4 text-s28">How We Make a Difference</h3>
+            <h3 className="text-xl font-semibold mb-4 text-s28">{translate('philosophy.what_we_achieve')}</h3>
             <p className="text-s28-gray-200 text-justify">
-              Our equity-for-consulting model aligns our success with yours. We take care of the business side—legal, fundraising, go-to-market, and operations—so innovators can focus on science. Together, we launch ventures that change lives, drive economic growth, and secure a prosperous future for all.
+              {translate('philosophy.what_we_achieve_desc')}
             </p>
           </div>
         </div>
@@ -50,7 +53,7 @@ const PhilosophySection: React.FC = () => {
             onClick={() => scrollToSection('contact')}
             className="btn-primary inline-flex items-center space-x-2"
           >
-            <span>Get in Touch</span>
+            <span>{translate('nav.get_in_touch')}</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>

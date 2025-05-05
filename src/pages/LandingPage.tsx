@@ -12,11 +12,11 @@ import PhilosophyContent from "@/components/sections/PhilosophyContent";
 // Import ContactForm for the contact section
 import ContactForm from "@/components/ContactForm";
 import MissionSection from "@/components/sections/MissionSection";
-import SuccessStoriesSection from "@/components/sections/SuccessStoriesSection";
+// import SuccessStoriesSection from "@/components/sections/SuccessStoriesSection";
 import S28ExplainedSection from "@/components/sections/S28ExplainedSection";
 import CtaFloatingButton from "@/components/CtaFloatingButton";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import MetricsSection from "@/components/sections/MetricsSection";
+// import TestimonialsSection from "@/components/sections/TestimonialsSection";
+// import MetricsSection from "@/components/sections/MetricsSection";
 import WorkflowTimelineSection from "@/components/sections/WorkflowTimelineSection";
 
 const LandingPage: React.FC = () => {
@@ -33,11 +33,11 @@ const LandingPage: React.FC = () => {
 
         <section
           id="philosophy"
-          className="py-24 bg-gradient-to-br from-s28-black via-gray-900 to-s28-black text-white"
+          className="py-24 bg-s28-gray-100 text-black"
         >
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in-up">
                 Our Philosophy
               </h2>
               <div className="w-20 h-1 bg-s28 mx-auto"></div>
@@ -46,11 +46,11 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        <SuccessStoriesSection />
+        {/* Success Stories section hidden */}
 
-        <MetricsSection />
+        {/* Metrics section hidden */}
 
-        <TestimonialsSection />
+        {/* Testimonials section hidden */}
 
         <WorkflowTimelineSection />
 

@@ -35,7 +35,12 @@ const MissionSection: React.FC = () => {
     <section id="mission" className="py-24 bg-white text-slate-900">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-semibold mb-8 text-center">{translate('mission.title')}</h3>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in-up">
+              {translate('mission.title')}
+            </h2>
+            <div className="w-20 h-1 bg-s28 mx-auto"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {industries.map((industry) => (
               <div key={industry.key} className="group p-6 bg-s28-gray-50 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">

@@ -75,12 +75,7 @@ const Navbar = () => {
           >
             {translate('nav.philosophy')}
           </button>
-          <button 
-            onClick={() => scrollToSection('success-stories')}
-            className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
-          >
-            {translate('nav.success_stories')}
-          </button>
+          {/* Success Stories link removed */}
           <button 
             onClick={() => scrollToSection('workflow')}
             className={`${textColorClass} hover:text-s28 transition-colors underline-hover bg-transparent border-none cursor-pointer`}
@@ -133,13 +128,7 @@ const Navbar = () => {
           >
             {translate('nav.philosophy')}
           </button>
-          <button 
-            onClick={() => scrollToSection('success-stories')}
-            className="text-s28-white hover:text-s28 transition-all duration-300 py-2 transform hover:translate-x-2"
-            type="button"
-          >
-            {translate('nav.success_stories')}
-          </button>
+          {/* Success Stories link removed */}
           <button 
             onClick={() => scrollToSection('workflow')}
             className="text-s28-white hover:text-s28 transition-all duration-300 py-2 transform hover:translate-x-2"
